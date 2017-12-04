@@ -1,10 +1,9 @@
 package main.neighbourfood;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -27,6 +26,15 @@ public class UserController {
         userRepository.delete(user);
     }
 
-
+    @PostMapping("/verify")
+    public User checkLogin(@RequestBody User user){
+        List<User> users = (List<User>)userRepository.findAll();
+        for (int i = 0; i < users.size(); i++) {
+            if(user.getEmail().equals(users.get(i).getEmail())
+                    &&user.getPassword().equals(users.get(i).getPassword()))
+                return users.get(i);
+        }
+        return null;
+    }
 
 }
