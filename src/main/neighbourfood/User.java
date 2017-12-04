@@ -1,5 +1,7 @@
 package main.neighbourfood;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -22,9 +24,11 @@ public class User {
     private Set<Review> reviews;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Orders> orders;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "seller", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Sale> sales;
 
     public User() {

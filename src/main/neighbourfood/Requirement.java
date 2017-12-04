@@ -1,6 +1,8 @@
 package main.neighbourfood;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,10 +14,12 @@ public class Requirement {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
+    @JsonIgnore
     private Orders orders;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "sale_id")
+    @JsonIgnore
     private Sale sale;
 
     public Requirement() {

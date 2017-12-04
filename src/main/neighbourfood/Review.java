@@ -1,5 +1,6 @@
 package main.neighbourfood;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.util.Date;
@@ -14,14 +15,17 @@ public class Review {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "writer_id")
+    @JsonIgnore
     private User writer;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn (name= "target_id")
+    @JsonIgnore
     private User target;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name= "sale_id")
+    @JsonIgnore
     private Sale sale;
 
     @CreationTimestamp
