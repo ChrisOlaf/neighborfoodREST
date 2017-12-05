@@ -27,14 +27,48 @@ public class UserController {
     }
 
     @PostMapping("/verify")
-    public User checkLogin(@RequestBody User user){
+    public User checkLogin(@RequestBody Verify verify){
         List<User> users = (List<User>)userRepository.findAll();
         for (int i = 0; i < users.size(); i++) {
-            if(user.getEmail().equals(users.get(i).getEmail())
-                    &&user.getPassword().equals(users.get(i).getPassword()))
+            if(verify.getEmail().equals(users.get(i).getEmail())
+                    &&
+                    verify.getPassword().equals(users.get(i).getPassword()))
                 return users.get(i);
         }
-        return null;
+        User usermokki = new User();
+        usermokki.setName("Ei löytynyt machia, mutta palauttaa olion");
+        return usermokki;
     }
 
+}
+
+class Verify{
+    private String email;
+    private String password;
+
+    public Verify() {
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Verify(String email, String password) {
+        this.email = email;
+        this.password = password;
+
+
+    }
 }
