@@ -37,6 +37,13 @@ public class UserController {
         }
         return null;
     }
+
+    @GetMapping("/getuser")
+    public User getUser(@RequestParam int i){
+        User user = userRepository.findOne(i);
+        user.setPassword("ei saa kertoa");
+        return user;
+    }
 }
 
 class Verify{
