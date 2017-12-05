@@ -16,7 +16,7 @@ public class Sale {
     private String content;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "sale", cascade = CascadeType.ALL)
-    private List<Requirement> requirements;
+    private Set<Requirement> requirements;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "seller_id")
@@ -32,7 +32,7 @@ public class Sale {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "sale", cascade = CascadeType.ALL)
     private Set<Review> reviews;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "sale", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "saleresponse", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Response> responses;
 
@@ -56,11 +56,11 @@ public class Sale {
         this.content = content;
     }
 
-    public List<Requirement> getRequirements() {
+    public Set<Requirement> getRequirements() {
         return requirements;
     }
 
-    public void setRequirements(List<Requirement> requirements) {
+    public void setRequirements(Set<Requirement> requirements) {
         this.requirements = requirements;
     }
 

@@ -18,11 +18,11 @@ public class Response {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name= "sale_id")
-    private Sale sale;
+    private Sale saleresponse;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name= "orders_id")
-    private Orders orders;
+    private Orders ordersresponse;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -53,14 +53,6 @@ public class Response {
         this.createDate = createDate;
     }
 
-    public Sale getSale() {
-        return sale;
-    }
-
-    public void setSale(Sale sale) {
-        this.sale = sale;
-    }
-
     public User getResponder() {
         return responder;
     }
@@ -69,11 +61,19 @@ public class Response {
         this.responder = responder;
     }
 
-    public Orders getOrders() {
-        return orders;
+    public Sale getSaleresponse() {
+        return saleresponse;
     }
 
-    public void setOrders(Orders orders) {
-        this.orders = orders;
+    public void setSaleresponse(Sale saleresponse) {
+        this.saleresponse = saleresponse;
+    }
+
+    public Orders getOrdersresponse() {
+        return ordersresponse;
+    }
+
+    public void setOrdersresponse(Orders ordersresponse) {
+        this.ordersresponse = ordersresponse;
     }
 }

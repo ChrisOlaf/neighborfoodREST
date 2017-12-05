@@ -32,7 +32,7 @@ public class Orders {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "orders", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "ordersresponse", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Response> responses;
 
