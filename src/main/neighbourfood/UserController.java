@@ -35,11 +35,8 @@ public class UserController {
                     verify.getPassword().equals(users.get(i).getPassword()))
                 return users.get(i);
         }
-        User usermokki = new User();
-        usermokki.setName("Ei löytynyt machia, mutta palauttaa olion");
-        return usermokki;
+        return null;
     }
-
 }
 
 class Verify{
