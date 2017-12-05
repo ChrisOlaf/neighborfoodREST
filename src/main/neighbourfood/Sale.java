@@ -32,6 +32,11 @@ public class Sale {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "sale", cascade = CascadeType.ALL)
     private Set<Review> reviews;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "sale", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<Response> responses;
+
+
     public Sale() {
     }
 
@@ -89,5 +94,13 @@ public class Sale {
 
     public void setReviews(Set<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public Set<Response> getResponses() {
+        return responses;
+    }
+
+    public void setResponses(Set<Response> responses) {
+        this.responses = responses;
     }
 }

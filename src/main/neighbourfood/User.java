@@ -33,6 +33,10 @@ public class User {
     @JsonIgnore
     private Set<Sale> sales;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "responder", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<Response> responses;
+
     public User() {
     }
 
@@ -138,5 +142,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<Response> getResponses() {
+        return responses;
+    }
+
+    public void setResponses(Set<Response> responses) {
+        this.responses = responses;
     }
 }
