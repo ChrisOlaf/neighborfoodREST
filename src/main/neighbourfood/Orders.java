@@ -23,8 +23,6 @@ public class Orders {
 
     private Date whenReady;
 
-
-
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "orders", cascade = CascadeType.ALL)
     private List<Requirement> requirements;
 
