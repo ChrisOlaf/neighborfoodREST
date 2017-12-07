@@ -38,7 +38,6 @@ public class OrderController {
 
     @PostMapping ("/addorderwithreqs")
     public void orderWithReqs(@RequestBody Orders order){
-
         List<Requirement> requirements = order.getRequirements();
         System.out.println(order);
         Orders uusi = orderRepository.save(order);

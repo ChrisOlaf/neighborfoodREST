@@ -25,6 +25,7 @@ public class Orders {
     private Date whenReady;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "orders", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Requirement> requirements = new ArrayList<>();
 
     @ManyToOne
@@ -93,7 +94,6 @@ public class Orders {
                 ", content='" + content + '\'' +
                 ", createDate=" + createDate +
                 ", whenReady=" + whenReady +
-                ", requirements=" + requirements +
                 ", user=" + user +
                 ", responses=" + responses +
                 '}';
