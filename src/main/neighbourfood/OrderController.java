@@ -7,14 +7,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class OrderController {
 
     @Autowired
     OrderRepository orderRepository;
+
+    @Autowired
+    RequirementRepository requirementRepository;
 
     @GetMapping("/allorders")
     public Iterable<Orders> naytaKaikki(){
@@ -29,6 +34,21 @@ public class OrderController {
     @PostMapping("/removeorder")
     public void poistaYksi(@RequestBody Orders order){
         orderRepository.delete(order);
+    }
+
+    @PostMapping ("/addorderwithreqs")
+    public void orderWithReqs(@RequestBody Orders order){
+
+        List<Requirement> requirements = order.getRequirements();
+        System.out.println(order);
+        Orders uusi = orderRepository.save(order);
+        System.out.println(uusi);
+        int j = uusi.getId();
+        System.out.println(j);
+        for (int i = 0; i < requirements.size(); i++) {
+            requirements.get(i).setOrder(uusi);
+            Requirement req = requirementRepository.save(requirements.get(i));
+        }
     }
 
 }

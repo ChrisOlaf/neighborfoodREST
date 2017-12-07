@@ -25,6 +25,9 @@ public class Requirement {
     public Requirement() {
     }
 
+    public Requirement(String requirement){
+        this.requirement = requirement;
+    }
     public Integer getId() {
         return id;
     }
@@ -46,7 +49,8 @@ public class Requirement {
     }
 
     public void setOrder(Orders order) {
-        this.orders = orders;
+        this.orders = order;
+        order.addRequirement(this);
     }
 
     public Sale getSale() {
@@ -55,5 +59,13 @@ public class Requirement {
 
     public void setSale(Sale sale) {
         this.sale = sale;
+    }
+
+    @Override
+    public String toString() {
+        return "Requirement{" +
+                "id=" + id +
+                ", requirement='" + requirement + '\'' +
+                '}';
     }
 }
