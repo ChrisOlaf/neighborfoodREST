@@ -20,9 +20,7 @@ public class Response {
     @JoinColumn(name= "sale_id")
     private Sale saleresponse;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name= "orders_id")
-    private Orders ordersresponse;
+    private Integer order_id;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -69,11 +67,11 @@ public class Response {
         this.saleresponse = saleresponse;
     }
 
-    public Orders getOrdersresponse() {
-        return ordersresponse;
+    public Integer getOrder_id() {
+        return order_id;
     }
 
-    public void setOrdersresponse(Orders ordersresponse) {
-        this.ordersresponse = ordersresponse;
+    public void setOrder_id(Integer order_id) {
+        this.order_id = order_id;
     }
 }
