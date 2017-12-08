@@ -26,6 +26,8 @@ public class UserController {
         userRepository.delete(user);
     }
 
+
+    // Verifies user login and returns either user information, or in case of wrong user details, empty user.
     @PostMapping("/verify")
     public User checkLogin(@RequestBody Verify verify){
         List<User> users = (List<User>)userRepository.findAll();
@@ -35,7 +37,8 @@ public class UserController {
                     verify.getPassword().equals(users.get(i).getPassword()))
                 return users.get(i);
         }
-        return null;
+        User user = new User();
+        return user;
     }
 
     @GetMapping("/getuser")

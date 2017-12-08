@@ -3,6 +3,7 @@ package main.neighbourfood;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -20,22 +21,22 @@ public class User {
     private String email;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "writer", cascade = CascadeType.ALL)
-    private Set<Review> messages;
+    private Set<Review> messages = new HashSet<>();
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "target", cascade = CascadeType.ALL)
-    private Set<Review> reviews;
+    private Set<Review> reviews = new HashSet<>();
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnore
-    private Set<Orders> orders;
+    private Set<Orders> orders = new HashSet<>();
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "seller", cascade = CascadeType.ALL)
     @JsonIgnore
-    private Set<Sale> sales;
+    private Set<Sale> sales = new HashSet<>();
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "responder", cascade = CascadeType.ALL)
     @JsonIgnore
-    private Set<Response> responses;
+    private Set<Response> responses = new HashSet<>();
 
     public User() {
     }
@@ -157,5 +158,8 @@ public class User {
 
     public void setResponses(Set<Response> responses) {
         this.responses = responses;
+    }
+    public void addResponse(Response response) {
+        responses.add(response);
     }
 }
