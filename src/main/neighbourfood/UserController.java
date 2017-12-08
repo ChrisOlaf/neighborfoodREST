@@ -35,7 +35,8 @@ public class UserController {
                     verify.getPassword().equals(users.get(i).getPassword()))
                 return users.get(i);
         }
-        return null;
+        User user = new User();
+        return user;
     }
 
     @GetMapping("/getuser")
