@@ -12,7 +12,7 @@ public class Response {
     private Integer id;
     private String content;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "responder_id")
     private User responder;
 
@@ -56,6 +56,7 @@ public class Response {
     }
 
     public void setResponder(User responder) {
+        responder.addResponse(this);
         this.responder = responder;
     }
 
@@ -73,5 +74,17 @@ public class Response {
 
     public void setOrder_id(Integer order_id) {
         this.order_id = order_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Response{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", responder=" + responder +
+                ", saleresponse=" + saleresponse +
+                ", order_id=" + order_id +
+                ", createDate=" + createDate +
+                '}';
     }
 }
