@@ -2,10 +2,7 @@ package main.neighbourfood;
 
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,6 +17,9 @@ public class OrderController {
 
     @Autowired
     RequirementRepository requirementRepository;
+
+    @Autowired
+    ResponseRepository responseRepository;
 
     @GetMapping("/allorders")
     public Iterable<Orders> naytaKaikki(){
@@ -48,6 +48,17 @@ public class OrderController {
             requirements.get(i).setOrder(uusi);
             Requirement req = requirementRepository.save(requirements.get(i));
         }
+    }
+    @GetMapping("/order/{id}/responses")
+    public List<Response> responsesForOrder(@PathVariable(name = "id")int order_id) {
+        Orders o = orderRepository.findOne(order_id);
+        return orderRepository.findAllResponsesForOrder(o);
+    }
+    @PostMapping("/order/{id}/responses")
+    public void addResponse(@PathVariable(name = "id")int order_id, @RequestBody Response response){
+        Orders o = orderRepository.findOne(order_id);
+        response.setOrder_id(o);
+        responseRepository.save(response);
     }
 
 }

@@ -1,5 +1,6 @@
 package main.neighbourfood;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -20,7 +21,10 @@ public class Response {
     @JoinColumn(name= "sale_id")
     private Sale saleresponse;
 
-    private Integer order_id;
+    @ManyToOne
+    @JoinColumn(name="order_id")
+    @JsonIgnore
+    private Orders order_id;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -68,23 +72,12 @@ public class Response {
         this.saleresponse = saleresponse;
     }
 
-    public Integer getOrder_id() {
+    public Orders getOrder_id() {
         return order_id;
     }
 
-    public void setOrder_id(Integer order_id) {
+    public void setOrder_id(Orders order_id) {
         this.order_id = order_id;
     }
 
-    @Override
-    public String toString() {
-        return "Response{" +
-                "id=" + id +
-                ", content='" + content + '\'' +
-                ", responder=" + responder +
-                ", saleresponse=" + saleresponse +
-                ", order_id=" + order_id +
-                ", createDate=" + createDate +
-                '}';
-    }
 }

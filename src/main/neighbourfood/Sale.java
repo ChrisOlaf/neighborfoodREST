@@ -16,7 +16,7 @@ public class Sale {
     private Integer id;
     private String content;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "sale", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL)
     private List<Requirement> requirements = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.ALL)

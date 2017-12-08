@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -24,7 +21,7 @@ public class Orders {
 
     private Date whenReady;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "orders", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Requirement> requirements = new ArrayList<>();
 
@@ -33,7 +30,7 @@ public class Orders {
     private User user;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "order_id", cascade = CascadeType.ALL)
-    private Set<Response> responses;
+    private Set<Response> responses = new HashSet<>();
 
 
     public Orders() {
@@ -101,5 +98,13 @@ public class Orders {
 
     public void addRequirement(Requirement requirement) {
         requirements.add(requirement);
+    }
+
+    public Set<Response> getResponses() {
+        return responses;
+    }
+
+    public void setResponses(Set<Response> responses) {
+        this.responses = responses;
     }
 }
