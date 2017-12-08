@@ -17,8 +17,15 @@ public class UserController {
     }
 
     @PostMapping("/adduser")
-    public void lisaaYksi(@RequestBody User user){
+    public String lisaaYksi(@RequestBody User user){
+        List<User> users = (List<User>)userRepository.findAll();
+        for (User u : users) {
+            if(user.getEmail().equals(u.getEmail())) {
+                return "Virhe!";
+            }
+        }
         userRepository.save(user);
+        return "Rekisteröinti onnistui!";
     }
 
     @PostMapping("/removeuser")
@@ -75,7 +82,5 @@ class Verify{
     public Verify(String email, String password) {
         this.email = email;
         this.password = password;
-
-
     }
 }
