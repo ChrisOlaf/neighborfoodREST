@@ -17,15 +17,16 @@ public class UserController {
     }
 
     @PostMapping("/adduser")
-    public String lisaaYksi(@RequestBody User user){
+    public User lisaaYksi(@RequestBody User user){
         List<User> users = (List<User>)userRepository.findAll();
         for (User u : users) {
             if(user.getEmail().equals(u.getEmail())) {
-                return "Virhe!";
+                User x = new User();
+                return x;
             }
         }
         userRepository.save(user);
-        return "Rekisteröinti onnistui!";
+        return user;
     }
 
     @PostMapping("/removeuser")
