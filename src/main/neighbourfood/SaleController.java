@@ -25,15 +25,6 @@ public class SaleController {
 
     @PostMapping("/addsale")
     public void lisaaYksi(@RequestBody Sale sale){
-        List<Requirement> requirements = sale.getRequirements();
-        System.out.println(sale);
-        Sale uusi = saleRepository.save(sale);
-        System.out.println(uusi);
-        int j = uusi.getId();
-        for (int i = 0; i < requirements.size(); i++) {
-            requirements.get(i).setSale(uusi);
-            Requirement requ = requirementRepository.save(requirements.get(i));
-        }
         saleRepository.save(sale);
         System.out.println(sale);
     }

@@ -38,17 +38,9 @@ public class OrderController {
 
     @PostMapping ("/addorderwithreqs")
     public void orderWithReqs(@RequestBody Orders order){
-        List<Requirement> requirements = order.getRequirements();
-        System.out.println(order);
-        Orders uusi = orderRepository.save(order);
-        System.out.println(uusi);
-        int j = uusi.getId();
-        System.out.println(j);
-        for (int i = 0; i < requirements.size(); i++) {
-            requirements.get(i).setOrder(uusi);
-            Requirement req = requirementRepository.save(requirements.get(i));
-        }
+        orderRepository.save(order);
     }
+
     @GetMapping("/order/{id}/responses")
     public List<Response> responsesForOrder(@PathVariable(name = "id")int order_id) {
         Orders o = orderRepository.findOne(order_id);

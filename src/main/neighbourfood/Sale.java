@@ -19,7 +19,7 @@ public class Sale {
     @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL)
     private List<Requirement> requirements = new ArrayList<>();
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "seller_id")
     private User seller;
 
