@@ -59,6 +59,7 @@ public class Requirement {
 
     public void setSale(Sale sale) {
         this.sale = sale;
+        sale.addRequirement(this);
     }
 
     @Override

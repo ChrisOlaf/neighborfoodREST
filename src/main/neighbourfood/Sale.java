@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -16,7 +17,7 @@ public class Sale {
     private String content;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "sale", cascade = CascadeType.ALL)
-    private Set<Requirement> requirements;
+    private List<Requirement> requirements = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "seller_id")
@@ -56,11 +57,11 @@ public class Sale {
         this.content = content;
     }
 
-    public Set<Requirement> getRequirements() {
+    public List<Requirement> getRequirements() {
         return requirements;
     }
 
-    public void setRequirements(Set<Requirement> requirements) {
+    public void setRequirements(List<Requirement> requirements) {
         this.requirements = requirements;
     }
 
@@ -103,4 +104,23 @@ public class Sale {
     public void setResponses(Set<Response> responses) {
         this.responses = responses;
     }
+
+    @Override
+    public String toString() {
+        return "Sale{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", requirements=" + requirements +
+                ", seller=" + seller +
+                ", whenReady=" + whenReady +
+                ", createDate=" + createDate +
+                ", reviews=" + reviews +
+                ", responses=" + responses +
+                '}';
+    }
+
+    public void addRequirement(Requirement requirement) {
+        requirements.add(requirement);
+    }
 }
+
