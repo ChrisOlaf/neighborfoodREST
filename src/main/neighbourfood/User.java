@@ -26,11 +26,11 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "target", cascade = CascadeType.ALL)
     private Set<Review> reviews = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.PERSIST)
     @JsonIgnore
     private Set<Orders> orders = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "seller", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "seller", cascade = CascadeType.PERSIST)
     @JsonIgnore
     private Set<Sale> sales = new HashSet<>();
 
