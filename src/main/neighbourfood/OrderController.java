@@ -21,6 +21,9 @@ public class OrderController {
     @Autowired
     ResponseRepository responseRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     @GetMapping("/allorders")
     public Iterable<Orders> naytaKaikki(){
         return orderRepository.findAll();
@@ -39,6 +42,7 @@ public class OrderController {
     @PostMapping ("/addorderwithreqs")
     public void orderWithReqs(@RequestBody Orders order){
         orderRepository.save(order);
+        System.out.println(order);
     }
 
     @GetMapping("/order/{id}/responses")

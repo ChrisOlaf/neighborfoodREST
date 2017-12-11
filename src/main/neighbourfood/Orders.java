@@ -27,7 +27,7 @@ public class Orders {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "orders", cascade = CascadeType.ALL)
     private List<Requirement> requirements = new ArrayList<>();
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -84,6 +84,7 @@ public class Orders {
 
     public void setUser(User user) {
         this.user = user;
+        user.addOrder(this);
     }
 
     @Override
