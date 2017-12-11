@@ -17,9 +17,10 @@ public class Response {
     @JoinColumn(name = "responder_id")
     private User responder;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name= "sale_id")
-    private Sale saleresponse;
+    @JsonIgnore
+    private Sale sale_id;
 
     @ManyToOne
     @JoinColumn(name="order_id")
@@ -64,12 +65,12 @@ public class Response {
         this.responder = responder;
     }
 
-    public Sale getSaleresponse() {
-        return saleresponse;
+    public Sale getSale_id() {
+        return sale_id;
     }
 
-    public void setSaleresponse(Sale saleresponse) {
-        this.saleresponse = saleresponse;
+    public void setSale_id(Sale sale_id) {
+        this.sale_id = sale_id;
     }
 
     public Orders getOrder_id() {

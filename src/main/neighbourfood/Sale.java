@@ -19,9 +19,9 @@ public class Sale {
     @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL)
     private List<Requirement> requirements = new ArrayList<>();
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "seller_id")
-    private User seller;
+    private User user;
 
     private Date whenReady;
 
@@ -33,7 +33,7 @@ public class Sale {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "sale", cascade = CascadeType.ALL)
     private Set<Review> reviews;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "saleresponse", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "sale_id", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Response> responses;
 
@@ -65,12 +65,13 @@ public class Sale {
         this.requirements = requirements;
     }
 
-    public User getSeller() {
-        return seller;
+    public User getUser() {
+        return user;
     }
 
-    public void setSeller(User seller) {
-        this.seller = seller;
+    public void setUser(User user) {
+        this.user = user;
+        this.user.addSale(this);
     }
 
     public Date getWhenReady() {
@@ -111,7 +112,7 @@ public class Sale {
                 "id=" + id +
                 ", content='" + content + '\'' +
                 ", requirements=" + requirements +
-                ", seller=" + seller +
+                ", seller=" + user +
                 ", whenReady=" + whenReady +
                 ", createDate=" + createDate +
                 ", reviews=" + reviews +
