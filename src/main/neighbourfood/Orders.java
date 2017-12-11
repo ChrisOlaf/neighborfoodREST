@@ -26,6 +26,7 @@ public class Orders {
     private Date whenReady;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "orders", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Requirement> requirements = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.MERGE)
