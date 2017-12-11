@@ -14,6 +14,9 @@ public class Sale {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    private String title;
+
     private String content;
 
     @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL)
@@ -47,6 +50,14 @@ public class Sale {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {
@@ -110,6 +121,7 @@ public class Sale {
     public String toString() {
         return "Sale{" +
                 "id=" + id +
+                "title: " + title +
                 ", content='" + content + '\'' +
                 ", requirements=" + requirements +
                 ", seller=" + user +

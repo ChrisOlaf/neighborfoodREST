@@ -16,6 +16,7 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String content;
+    private String title;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -52,6 +53,22 @@ public class Orders {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Set<Response> getResponses() {
+        return responses;
+    }
+
+    public void setResponses(Set<Response> responses) {
+        this.responses = responses;
     }
 
     public Date getWhenReady() {
@@ -91,6 +108,7 @@ public class Orders {
     public String toString() {
         return "Orders{" +
                 "id=" + id +
+                "title: " +title+
                 ", content='" + content + '\'' +
                 ", createDate=" + createDate +
                 ", whenReady=" + whenReady +
