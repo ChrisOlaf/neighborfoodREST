@@ -55,4 +55,9 @@ public class SaleController {
         response.setSale_id(s);
         responseRepository.save(response);
     }
+    @GetMapping("/sale/{id}/requirements")
+    public List<Requirement> requirementsForSale(@PathVariable(name = "id")int sale_id) {
+        Sale s = saleRepository.findOne(sale_id);
+        return saleRepository.findAllRequirementsForSale(s);
+    }
 }
