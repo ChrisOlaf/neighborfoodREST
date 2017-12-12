@@ -18,6 +18,16 @@ public class UserController {
     public Iterable<User> naytaKaikki() {
         return userRepository.findAll();
     }
+//    @GetMapping("/order/{id}/responses")
+//    public List<Response> responsesForOrder(@PathVariable(name = "id")int order_id) {
+//        Orders o = orderRepository.findOne(order_id);
+//        return orderRepository.findAllResponsesForOrder(o);
+//    }
+
+    @GetMapping("/user/{id}")
+    public User yksiKayttaja(@PathVariable(name="id") int user_id){
+        return userRepository.findOne(user_id);
+    }
 
     @GetMapping("/allchefs")
     public Iterable<User> kaikkiKokit() {
