@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Sale {
@@ -123,7 +120,6 @@ public class Sale {
                 "id=" + id +
                 "title: " + title +
                 ", content='" + content + '\'' +
-                ", requirements=" + requirements +
                 ", seller=" + user +
                 ", whenReady=" + whenReady +
                 ", createDate=" + createDate +

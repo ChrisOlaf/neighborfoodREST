@@ -31,7 +31,17 @@ public class OrderController {
 
     @PostMapping("/addorder")
     public void lisaaYksi(@RequestBody Orders order){
-        orderRepository.save(order);
+        Set<Requirement> lista = order.getRequirements();
+        Orders o = orderRepository.save(order);
+        for (Requirement req: lista) {
+            if(req.getRequirement()!=null) {
+                req.setOrder(o);
+                requirementRepository.save(req);
+                System.out.println(req);
+            }
+        }
+        order.setRequirements(lista);
+
     }
 
     @PostMapping("/removeorder")
@@ -42,7 +52,6 @@ public class OrderController {
     @PostMapping ("/addorderwithreqs")
     public void orderWithReqs(@RequestBody Orders order){
         orderRepository.save(order);
-        System.out.println(order);
     }
 
     @GetMapping("/order/{id}/responses")

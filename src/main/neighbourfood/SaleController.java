@@ -25,8 +25,17 @@ public class SaleController {
 
     @PostMapping("/addsale")
     public void lisaaYksi(@RequestBody Sale sale) {
-        saleRepository.save(sale);
-        System.out.println(sale);
+        List<Requirement> lista = sale.getRequirements();
+        Sale o = saleRepository.save(sale);
+        int j = lista.size();
+        for (int i = 0; i < j; i++) {
+            if(lista.get(i).getRequirement()!=null) {
+                lista.get(i).setSale(o);
+                requirementRepository.save(lista.get(i));
+            }
+        }
+        sale.setRequirements(lista);
+
     }
 
     @PostMapping("/removesale")

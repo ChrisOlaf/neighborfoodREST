@@ -12,9 +12,8 @@ public class Requirement {
     private Integer id;
     private String requirement;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "order_id")
-    @JsonIgnore
     private Orders orders;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -67,6 +66,7 @@ public class Requirement {
         return "Requirement{" +
                 "id=" + id +
                 ", requirement='" + requirement + '\'' +
+
                 '}';
     }
 }
