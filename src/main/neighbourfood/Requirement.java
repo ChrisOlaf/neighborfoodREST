@@ -14,6 +14,7 @@ public class Requirement {
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "order_id")
+    @JsonIgnore
     private Orders orders;
 
     @ManyToOne(cascade = CascadeType.ALL)

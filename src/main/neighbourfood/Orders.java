@@ -23,6 +23,7 @@ public class Orders {
     private Date whenReady;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "orders", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Requirement> requirements = new HashSet<>();
 
     @ManyToOne(cascade = CascadeType.MERGE)
