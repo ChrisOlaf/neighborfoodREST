@@ -3,6 +3,7 @@ package main.neighbourfood;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,6 +17,19 @@ public class UserController {
     @GetMapping("/allusers")
     public Iterable<User> naytaKaikki() {
         return userRepository.findAll();
+    }
+
+    @GetMapping("/allchefs")
+    public Iterable<User> kaikkiKokit() {
+        List<User> kaikki = (List<User>)  userRepository.findAll();
+        List<User> kokit = new ArrayList<>();
+        for (User kokki: kaikki) {
+            if("chef".equals(kokki.getUserStatus())){
+                kokit.add(kokki);
+            }
+        }
+        Iterable<User> kokkeja = (Iterable<User>) kokit;
+        return kokkeja;
     }
 
     @PostMapping("/adduser")
