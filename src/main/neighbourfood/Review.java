@@ -13,12 +13,12 @@ public class Review {
     private String content;
     private int stars;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "writer_id")
     @JsonIgnore
     private User writer;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn (name= "target_id")
     @JsonIgnore
     private User target;
@@ -74,6 +74,7 @@ public class Review {
 
     public void setTarget(User target) {
         this.target = target;
+        this.target.addReview(this);
     }
 
     public Sale getSale() {
@@ -90,5 +91,18 @@ public class Review {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", stars=" + stars +
+                ", writer=" + writer +
+                ", target=" + target +
+                ", sale=" + sale +
+                ", createDate=" + createDate +
+                '}';
     }
 }

@@ -18,6 +18,7 @@ public class ReviewController {
 
     @PostMapping("/addreview")
     public void lisaaYksi(@RequestBody Review review){
+        System.out.println(review);
         reviewRepository.save(review);
     }
 

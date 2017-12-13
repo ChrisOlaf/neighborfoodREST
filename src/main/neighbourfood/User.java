@@ -24,6 +24,7 @@ public class User {
     private Set<Review> messages = new HashSet<>();
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "target", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Review> reviews = new HashSet<>();
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
@@ -170,5 +171,9 @@ public class User {
 
     public void addSale(Sale sale) {
         this.sales.add(sale);
+    }
+
+    public void addReview(Review review) {
+        reviews.add(review);
     }
 }
