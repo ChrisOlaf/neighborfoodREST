@@ -15,12 +15,10 @@ public class Review {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "writer_id")
-    @JsonIgnore
     private User writer;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn (name= "target_id")
-    @JsonIgnore
     private User target;
 
     @ManyToOne(cascade = CascadeType.ALL)

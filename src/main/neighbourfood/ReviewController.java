@@ -20,6 +20,7 @@ public class ReviewController {
     public void lisaaYksi(@RequestBody Review review){
         System.out.println(review);
         reviewRepository.save(review);
+        System.out.println(review);
     }
 
     @PostMapping("/removereview")
