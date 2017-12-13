@@ -1,11 +1,7 @@
 package main.neighbourfood;
 
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -41,7 +37,6 @@ public class OrderController {
             }
         }
         order.setRequirements(lista);
-
     }
 
     @PostMapping("/removeorder")

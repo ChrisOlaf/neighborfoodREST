@@ -19,12 +19,12 @@ public class SaleController {
     ResponseRepository responseRepository;
 
     @GetMapping("/allsales")
-    public Iterable<Sale> naytaKaikki() {
-        return saleRepository.findAll();
+    public Iterable<Sale> showAllSalesOrderedByTimeStamp() {
+        return saleRepository.findAllSalesByCreateDate();
     }
 
     @PostMapping("/addsale")
-    public void lisaaYksi(@RequestBody Sale sale) {
+    public void addOneSale (@RequestBody Sale sale) {
         List<Requirement> lista = sale.getRequirements();
         Sale o = saleRepository.save(sale);
         int j = lista.size();
@@ -39,7 +39,7 @@ public class SaleController {
     }
 
     @PostMapping("/removesale")
-    public void poistaYksi(@RequestBody Sale sale) {
+    public void removeOneSale(@RequestBody Sale sale) {
         saleRepository.delete(sale);
     }
 
