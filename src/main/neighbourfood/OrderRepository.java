@@ -12,4 +12,7 @@ public interface OrderRepository extends CrudRepository<Orders, Integer> {
 
     @Query("select r from Requirement r where r.orders = :id")
     public List<Requirement> findAllRequirementsForOrder(@Param("id") Orders order_id);
+
+    @Query("select o from Orders o order by create_date desc")
+    public List<Orders> findAllOrdersByCreateDate();
 }
