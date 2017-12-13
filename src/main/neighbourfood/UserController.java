@@ -18,11 +18,12 @@ public class UserController {
     public Iterable<User> naytaKaikki() {
         return userRepository.findAll();
     }
-//    @GetMapping("/order/{id}/responses")
-//    public List<Response> responsesForOrder(@PathVariable(name = "id")int order_id) {
-//        Orders o = orderRepository.findOne(order_id);
-//        return orderRepository.findAllResponsesForOrder(o);
-//    }
+
+    @GetMapping("/user/{id}/reviews")
+    public List<Review> reviewsForUser(@PathVariable(name = "id")int target_id) {
+        User target = userRepository.findOne(target_id);
+        return userRepository.findAllReviewsForUser(target);
+    }
 
     @GetMapping("/user/{id}")
     public User yksiKayttaja(@PathVariable(name="id") int user_id){
@@ -30,7 +31,7 @@ public class UserController {
     }
 
     @GetMapping("/allchefs")
-    public Iterable<User> kaikkiKokit() {
+    public Iterable<User> allChefs() {
         List<User> kaikki = (List<User>)  userRepository.findAll();
         List<User> kokit = new ArrayList<>();
         for (User kokki: kaikki) {
