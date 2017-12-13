@@ -26,7 +26,8 @@ public class OrderController {
     }
 
     @PostMapping("/addorder")
-    public void addOneOrder(@RequestBody Orders order){
+    public void addOneOrder(@RequestBody OrderTO orderto){
+        Orders order = new Orders(orderto);
         Set<Requirement> lista = order.getRequirements();
         Orders o = orderRepository.save(order);
         for (Requirement req: lista) {
@@ -60,6 +61,7 @@ public class OrderController {
         response.setOrder_id(o);
         responseRepository.save(response);
     }
+
     @GetMapping("/order/{id}/requirements")
     public List<Requirement> requirementsForOrder(@PathVariable(name = "id")int order_id) {
         Orders o = orderRepository.findOne(order_id);
