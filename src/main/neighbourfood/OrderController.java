@@ -25,12 +25,12 @@ public class OrderController {
     UserRepository userRepository;
 
     @GetMapping("/allorders")
-    public Iterable<Orders> naytaKaikki(){
-        return orderRepository.findAll();
+    public Iterable<Orders> showAllOrdersOrderedByTimeStamp(){
+        return orderRepository.findAllOrdersByCreateDate();
     }
 
     @PostMapping("/addorder")
-    public void lisaaYksi(@RequestBody Orders order){
+    public void addOneOrder(@RequestBody Orders order){
         Set<Requirement> lista = order.getRequirements();
         Orders o = orderRepository.save(order);
         for (Requirement req: lista) {
@@ -45,7 +45,7 @@ public class OrderController {
     }
 
     @PostMapping("/removeorder")
-    public void poistaYksi(@RequestBody Orders order){
+    public void removeOneOrder(@RequestBody Orders order){
         orderRepository.delete(order);
     }
 
