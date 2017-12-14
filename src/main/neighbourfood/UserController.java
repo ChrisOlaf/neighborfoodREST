@@ -1,8 +1,10 @@
 package main.neighbourfood;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -142,6 +144,17 @@ public class UserController {
         User user = userRepository.findOne(i);
         user.setPassword("ei saa kertoa");
         return user;
+    }
+
+    @Transactional
+    @PutMapping("/userpresentation")
+    public User modifyUser(@RequestBody User user){
+        int integer = user.getId();
+        String presentation = user.getPresentation();
+
+        userRepository.modifyUser(presentation, integer);
+
+        return userRepository.findOne(integer);
     }
 }
 
