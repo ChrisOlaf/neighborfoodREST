@@ -139,12 +139,13 @@ public class UserController {
         return user;
     }
 
-    @GetMapping("/getuser")
-    public User getUser(@RequestParam int i) {
-        User user = userRepository.findOne(i);
+    @GetMapping("/getuser/{id}")
+    public User getUser(@PathVariable(name="id") int id) {
+        User user = userRepository.findOne(id);
         user.setPassword("ei saa kertoa");
         return user;
     }
+
 
     @Transactional
     @PutMapping("/userpresentation")
