@@ -146,7 +146,6 @@ public class UserController {
         return user;
     }
 
-
     @Transactional
     @PutMapping("/userpresentation")
     public User modifyUser(@RequestBody User user){
